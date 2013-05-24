@@ -1,0 +1,17 @@
+PATH
+  remote: ../thepiratebay
+  specs:
+    thepiratebay (0.2.0)
+      nokogiri
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    nokogiri (1.5.9)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nokogiri
+  thepiratebay!
