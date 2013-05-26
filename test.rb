@@ -1,31 +1,31 @@
-# Hack / proof of concept for an automated torrent/sub downloader
+# # Hack / proof of concept for an automated torrent/sub downloader
 
 require 'rubygems'
 require 'bundler'
 Bundler.setup
+require_relative './lib/freebox_downloader.rb'
 
 
 # The query
-QUERY = "Game of Thrones S03E03"
+QUERY = "The pianist"
 
-# Try to fetch the torrent with most seeds
-require 'thepiratebay'
+torrents = FreeboxDownloader.query(QUERY)
 
-puts "Querying thepiratebay for #{QUERY}"
-tpb_res = ThePirateBay::Search.new(QUERY, 0, ThePirateBay::SortBy::Seeders).results.first
+if torrents.empty?
+  puts "No torrents found"
+  exit
+end
 
-puts "Got first result : "
-puts tpb_res.map{|k,v|"#{k} : #{v}"}.join("\n")
+puts "Found torrents : #{torrents.map(&:title)}"
 
-TITLE = tpb_res[:title]
-ID = tpb_res[:torrent_id]
-TORRENT_URL = tpb_res[:magnet_link]
+torrent = torrents.first
 
-# Getting the files for the first result
-filenames = ThePirateBay::Torrent.filenames(ID)
-puts "Got files : #{filenames.join ';'}"
+puts "Chosen torrent #{torrent.title}"
 
-# Find the right file depending on extension
+subs = FreeboxDownloader.subs(torrent.torrent_file_url)
 
-# Get the subtitles
-require 'nokogiri'
+if subs.empty?
+  puts "Got no subs"
+else
+  puts "Got subs : #{subs}"
+end

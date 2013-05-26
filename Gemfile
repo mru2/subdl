@@ -1,5 +1,7 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'thepiratebay', # :git => 'git://github.com/MrRuru/thepiratebay.git'
-                    :path => '../thepiratebay'
+gem 'thepiratebay'
+
 gem 'nokogiri'
+
+gem 'bencode'

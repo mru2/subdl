@@ -1,17 +1,15 @@
-PATH
-  remote: ../thepiratebay
+GEM
+  remote: https://rubygems.org/
   specs:
+    bencode (0.8.0)
+    nokogiri (1.5.9)
     thepiratebay (0.2.0)
       nokogiri
-
-GEM
-  remote: http://rubygems.org/
-  specs:
-    nokogiri (1.5.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bencode
   nokogiri
-  thepiratebay!
+  thepiratebay
